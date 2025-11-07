@@ -1,0 +1,230 @@
+/*
+|--------------------------------------------------------------------------
+| 1. THEME VARIABLES (Consistent Foundation)
+|--------------------------------------------------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+/* --- Global Setup --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- Theme Variables (same as register.css) --- */
+:root {
+  --color-primary: #1A202C; 
+  --color-secondary: #4A5568; 
+  --color-accent: #007BFF; 
+  --color-accent-hover: #0056b3;
+  --bg-color-main: #F8F9FA; 
+  --bg-color-box: #ffffff; 
+  --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --error-color: #e53e3e;
+}
+[data-theme="dark"] {
+  --color-primary: #E2E8F0;
+  --color-secondary: #A0AEC0;
+  --color-accent: #00BFFF; 
+  --color-accent-hover: #0099CC;
+  --bg-color-main: #121212; 
+  --bg-color-box: #1F2937; 
+  --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: var(--bg-color-main);
+  color: var(--color-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/*
+|--------------------------------------------------------------------------
+| 2. LAYOUT & NAVBAR
+|--------------------------------------------------------------------------
+*/
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.register-navbar {
+  width: 100%;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  display: flex;
+  padding: 1rem 5%;
+  border-bottom: 1px solid rgba(160, 174, 192, 0.2); 
+}
+
+.reg-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.reg-logo span {
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| 3. LOGIN BOX & FORM
+|--------------------------------------------------------------------------
+*/
+
+.login-box {
+  background-color: var(--bg-color-box);
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  width: 100%;
+  max-width: 450px; 
+  text-align: center;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 10;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.login-box h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--color-primary);
+  background-color: transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.input-group input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3); 
+  outline: none;
+}
+
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+.error-message {
+  padding: 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  background-color: rgba(229, 62, 62, 0.1);
+  color: var(--error-color);
+}
+
+.login-box p {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+}
+
+.register-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| 4. MEDIA QUERIES (Responsiveness) 📱
+|--------------------------------------------------------------------------
+*/
+
+/* Mobile Adjustments (Max 768px) */
+@media (max-width: 768px) {
+    .login-container {
+        justify-content: flex-start; 
+        padding-top: 5rem;
+    }
+    .register-navbar {
+        padding: 0.75rem 1rem;
+    }
+    
+    .login-box {
+        /* Reduce padding and remove box shadow for a cleaner, native mobile look */
+        padding: 2rem 1.5rem;
+        box-shadow: none; 
+        margin-top: 1rem;
+        max-width: 100%; 
+        border-radius: 0; 
+    }
+
+    .login-box h2 {
+        font-size: 1.6rem;
+    }
+
+    .input-group input {
+        padding: 0.8rem 1rem;
+    }
+    
+    .login-button {
+        padding: 0.9rem;
+    }
+}

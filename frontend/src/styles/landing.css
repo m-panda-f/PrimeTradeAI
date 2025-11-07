@@ -1,0 +1,348 @@
+/*
+|--------------------------------------------------------------------------
+| 1. GLOBAL & THEME VARIABLES (Consistent Foundation)
+|--------------------------------------------------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* --- Light Theme Variables --- */
+:root {
+  --color-primary: #1A202C;
+  --color-secondary: #4A5568;
+  --color-accent: #007BFF;
+  --color-accent-hover: #0056b3;
+  --bg-color-main: #F8F9FA;
+  --bg-color-nav: rgba(255, 255, 255, 0.95);
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Dark Theme Variables --- */
+[data-theme="dark"] {
+  --color-primary: #E2E8F0;
+  --color-secondary: #A0AEC0;
+  --color-accent: #00BFFF;
+  --color-accent-hover: #0099CC;
+  --bg-color-main: #121212;
+  --bg-color-nav: rgba(18, 18, 18, 0.95);
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+body[data-theme] {
+  background-color: var(--bg-color-main);
+  color: var(--color-primary);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 2. NAVBAR STYLING (Elegant & Responsive)
+|--------------------------------------------------------------------------
+*/
+
+.landing-navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  
+  background-color: var(--bg-color-nav);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-light); 
+  transition: all 0.4s ease;
+}
+
+.reg-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.logo-accent {
+  color: var(--color-accent);
+  margin-left: 2px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  padding: 0.6rem 1.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-signup {
+  background-color: transparent;
+  color: var(--color-accent);
+}
+
+.nav-signup:hover {
+  background-color: var(--color-accent);
+  color: var(--bg-color-main);
+}
+
+.nav-login {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.nav-login:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 3. THEME TOGGLE
+|--------------------------------------------------------------------------
+*/
+/* (Theme Toggle styles omitted here for brevity, assume previous code remains) */
+/* ... */
+.theme-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+#theme-switch {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-secondary);
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.toggle-label:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+#theme-switch:checked + .toggle-label {
+  background-color: var(--color-accent);
+}
+#theme-switch:checked + .toggle-label:before {
+  transform: translateX(26px);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 4. HERO SECTION (Animated)
+|--------------------------------------------------------------------------
+*/
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 5rem;
+  
+  background-color: var(--bg-color-main);
+  background-image: linear-gradient(-45deg, 
+    var(--bg-color-main) 0%, 
+    color-mix(in srgb, var(--bg-color-main) 80%, var(--color-accent)) 50%,
+    var(--bg-color-main) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 18s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.animated-text {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+.tagline {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  color: var(--color-secondary);
+  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInDown 1s ease-out 0.4s forwards; 
+}
+
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.get-started {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+  
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.8s forwards; 
+}
+
+.get-started:hover {
+  transform: scale(1.05) translateY(-3px);
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 15px 30px rgba(0, 123, 255, 0.5);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| 5. FOOTER STYLING
+|--------------------------------------------------------------------------
+*/
+
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-secondary);
+  background-color: color-mix(in srgb, var(--bg-color-main) 90%, var(--color-secondary));
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+
+/*
+|--------------------------------------------------------------------------
+| 6. MEDIA QUERIES (Responsiveness) 📱
+|--------------------------------------------------------------------------
+*/
+
+/* Tablet and Smaller Desktop Adjustments */
+@media (max-width: 900px) {
+    .landing-navbar {
+        padding: 0.75rem 3%;
+    }
+    .hero-content {
+        max-width: 90%;
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 650px) {
+    /* Navbar Collapse */
+    .landing-navbar {
+        padding: 0.75rem 1rem;
+    }
+    .nav-right {
+        gap: 1rem;
+    }
+    
+    /* Make the buttons stack/span the width at the bottom */
+    .nav-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        gap: 0;
+        flex-direction: row; 
+        border-top: 1px solid rgba(160, 174, 192, 0.2); 
+        background-color: var(--bg-color-nav);
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+    
+    .nav-btn {
+        flex-grow: 1; 
+        border-radius: 0; 
+        margin: 0;
+        border: none;
+        padding: 1rem 0;
+    }
+    
+    .nav-signup {
+        border-right: 1px solid rgba(160, 174, 192, 0.2);
+    }
+
+    /* Hero Section Spacing */
+    .hero {
+        padding-bottom: 70px; /* Account for the fixed bottom nav */
+    }
+    
+    .animated-text {
+        font-size: 2.2rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    .get-started {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+}

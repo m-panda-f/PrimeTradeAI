@@ -1,0 +1,305 @@
+/*
+|--------------------------------------------------------------------------
+| 1. GLOBAL & THEME VARIABLES
+|--------------------------------------------------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- Light Theme Variables --- */
+:root {
+  --color-primary: #1A202C; /* Dark text */
+  --color-secondary: #4A5568; /* Subdued text/Grey */
+  --color-accent: #007BFF; /* Prime Blue */
+  --color-accent-hover: #0056b3;
+  --bg-color-main: #F8F9FA; /* Light background */
+  --bg-color-nav: #ffffff;
+  --bg-color-form: #ffffff;
+  --color-update: #28a745; /* Green for Update */
+  --color-update-hover: #1e7e34;
+  --color-delete: #e53e3e; /* Used for logout hover */
+  --error-color: #e53e3e;
+  --success-color: #38a169;
+}
+
+/* --- Dark Theme Variables --- */
+[data-theme="dark"] {
+  --color-primary: #E2E8F0;
+  --color-secondary: #A0AEC0;
+  --color-accent: #00BFFF;
+  --color-accent-hover: #0099CC;
+  --bg-color-main: #121212;
+  --bg-color-nav: #1F2937;
+  --bg-color-form: #1F2937;
+}
+
+body {
+  background-color: var(--bg-color-main);
+  color: var(--color-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 2. NAVBAR (Consistent across application)
+|--------------------------------------------------------------------------
+*/
+
+.navbar {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3%;
+  background-color: var(--bg-color-nav);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(160, 174, 192, 0.2);
+}
+
+.logo h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.username {
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.nav-items button {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-items button:hover {
+  background-color: var(--color-delete); 
+  color: white;
+  border-color: var(--color-delete);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 3. FORM CONTAINER & HEADER
+|--------------------------------------------------------------------------
+*/
+
+.employee-form-container { 
+    padding: 2rem 1rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: var(--bg-color-form);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s ease;
+}
+
+.employee-form-container h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-accent);
+    color: var(--color-primary);
+}
+
+.loading-message { 
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+}
+
+/*
+|--------------------------------------------------------------------------
+| 4. FORM ELEMENTS (Inputs, Selects, Radios, Checkboxes)
+|--------------------------------------------------------------------------
+*/
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="textarea"],
+.form-group input[type="email"],
+.form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--color-primary);
+    background-color: transparent; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[readonly] {
+    background-color: var(--bg-color-main);
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); 
+    outline: none;
+}
+
+/* Radio/Checkbox Group Styling - FIXING VISIBILITY */
+.radio-group,
+.checkbox-group {
+    padding: 0.5rem 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    flex-wrap: wrap; 
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 0; /* Clear previous inline styles */
+}
+
+.radio-group label:first-of-type,
+.checkbox-group label:first-of-type {
+    margin-left: 0; /* Ensure the first item isn't indented */
+}
+
+.radio-group label:first-of-type, .checkbox-group label:first-of-type {
+    /* Optional: Add a visual label for the group */
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 5. ACTION BUTTONS (Update and Back)
+|--------------------------------------------------------------------------
+*/
+
+.form-actions {
+    display: flex;
+    justify-content: space-between; 
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.form-actions button {
+    flex-grow: 1; 
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-button {
+    background-color: var(--color-update);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: white;
+}
+
+.update-button:hover {
+    background-color: var(--color-update-hover);
+}
+
+.back-button {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.back-button:hover {
+    background-color: color-mix(in srgb, var(--color-secondary) 80%, black);
+}
+
+/* Error / Success Messages */
+.error-message {
+    color: var(--error-color);
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.success-message {
+    color: var(--success-color);
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| 6. MEDIA QUERIES (Responsiveness) 📱
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+    .employee-form-container {
+        max-width: 100%;
+        margin: 0;
+        padding: 1.5rem 1rem;
+        border-radius: 0;
+        box-shadow: none; 
+    }
+    
+    .employee-form-container h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Stack radio/checkbox options on mobile */
+    .radio-group,
+    .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    /* Stack buttons vertically on small screens */
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-actions button {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+}
